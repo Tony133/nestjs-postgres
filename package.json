@@ -60,9 +60,7 @@
     "rxjs": "^6.6.3 || ^7.2.0"
   },
   "lint-staged": {
-    "*.ts": [
-      "prettier --write"
-    ]
+    "**/*.{ts,json}": []
   },
   "repository": {
     "type": "git",
