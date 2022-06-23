@@ -32,12 +32,12 @@ First install the module via `yarn` or `npm` and do not forget to install the dr
 
 
 ```bash
-    $ npm i --save nest-postgres  pg
+    $ npm i --save nest-postgres pg
 ```
 or
 
 ```bash
-    $ yarn add nest-postgres  pg
+    $ yarn add nest-postgres pg
 ```
 
 ## Table of Contents
@@ -62,9 +62,9 @@ PostgresModule is the primary entry point for this package and can be used synch
         connectionString: 'postgresql://[user]:[password]@[host]/[nameDb]',
         // or 
         // host: 'localhost',
-        // database: [databaseName],
-        // password: [passwordDb],
-        // user: [userDb],
+        // database: [:databaseName],
+        // password: [:passwordDb],
+        // user: [:userDb],
         // port: 5432,
     }),
   ],
@@ -81,9 +81,9 @@ or asynchronously
         connectionString: 'postgresql://[user]:[password]@[host]/[nameDb]',
         // or 
         // host: 'localhost',
-        // database: [databaseName],
-        // password: [passwordDb],
-        // user: [userDb],
+        // database: [:databaseName],
+        // password: [:passwordDb],
+        // user: [:userDb],
         // port: 5432,
       }),
     }),
@@ -139,9 +139,9 @@ export class UsersController {
         connectionString: 'postgresql://postgres:pass123@localhost:5432/nest1',
         // or 
         // host: 'localhost',
-        // database: [databaseName],
-        // password: [passwordDb],
-        // user: [userDb],
+        // database: [:databaseName],
+        // password: [:passwordDb],
+        // user: [:userDb],
         // port: 5432,
       },
       'db1Connection',
