@@ -219,7 +219,7 @@ export class UsersService {
 }
 ```
 
-For more information on `node-postgres for Nodejs` see [here](https://node-postgres.com/)
+For more information on `node-postgres` for Nodejs see [here](https://node-postgres.com/)
 
 ## Contribute
 Feel free to help this library, I'm quite busy with also another Nestjs packages, but the community will appreciate the effort of improving this library. Make sure you follow the guidelines
