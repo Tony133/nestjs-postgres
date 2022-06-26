@@ -98,8 +98,6 @@ UsersService:
 ```typescript
 import { Client } from 'pg';
 import { InjectClient } from 'nest-postgres';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -164,6 +162,10 @@ Usage example with Multi Connection
 PostService:
 
 ```typescript
+import { Client } from 'pg';
+import { InjectConnection } from 'nest-postgres';
+import { CreatePostDto } from './dto/create-post.dto';
+
 @Injectable()
 export class PostService {
   constructor(
@@ -193,6 +195,10 @@ export class PostService {
 UsersService:
 
 ```typescript
+import { Client } from 'pg';
+import { InjectConnection } from 'nest-postgres';
+import { CreateUserDto } from './dto/create-user.dto';
+
 @Injectable()
 export class UsersService {
   constructor(
