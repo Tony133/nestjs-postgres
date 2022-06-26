@@ -189,7 +189,7 @@ export class PostService {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
     }
   }
-
+}
 ```
 
 UsersService:
