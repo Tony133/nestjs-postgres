@@ -28,7 +28,7 @@ PostgreSQL module for Nest framework (node.js) 😻
 
 ## Installation
 
-First install the module via `yarn` or `npm` and do not forget to install the driver package as well:
+First install the module via `yarn` or `npm` or `pnpm` and do not forget to install the driver package as well:
 
 
 ```bash
@@ -38,6 +38,12 @@ or
 
 ```bash
     $ yarn add nest-postgres pg
+```
+
+or
+
+```bash
+    $ pnpm add nest-postgres pg
 ```
 
 ## Table of Contents
