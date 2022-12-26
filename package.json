@@ -26,6 +26,7 @@
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-angular": "17.3.0",
     "@nestjs/common": "9.2.1",
+    "@nestjs/config": "2.2.0",
     "@nestjs/core": "9.2.1",
     "@nestjs/platform-express": "9.2.1",
     "@nestjs/testing": "9.2.1",
