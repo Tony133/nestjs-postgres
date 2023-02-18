@@ -1,6 +1,6 @@
 {
   "name": "nest-postgres",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "PostgreSQL module for Nest framework (node.js) 😻",
   "author": "Tony133",
   "license": "MIT",
@@ -66,5 +66,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/tony133/nestjs-postgres"
+  },
+  "dependencies": {
+    "uuid": "9.0.0"
   }
 }
