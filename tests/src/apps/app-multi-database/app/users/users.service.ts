@@ -6,16 +6,19 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Client } from 'pg';
-import { InjectClient } from '../../../../lib';
+import { InjectConnection } from '../../../../../../lib';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectClient() private readonly pg: Client) {}
+  constructor(
+    @InjectConnection('db1Connection')
+    private dbConnection: Client,
+  ) {}
 
   public async findAll(): Promise<any> {
-    const users = await this.pg.query('SELECT * FROM users');
+    const users = await this.dbConnection.query('SELECT * FROM users');
     return users.rows;
   }
 
@@ -24,7 +27,10 @@ export class UsersService {
       throw new BadRequestException();
     }
 
-    const result = await this.pg.query('SELECT * FROM users WHERE id=$1', [id]);
+    const result = await this.dbConnection.query(
+      'SELECT * FROM users WHERE id=$1',
+      [id],
+    );
 
     if (!result) {
       throw new NotFoundException();
@@ -35,7 +41,7 @@ export class UsersService {
 
   public async create(createUserDto: CreateUserDto): Promise<any> {
     try {
-      const user = await this.pg.query(
+      const user = await this.dbConnection.query(
         'INSERT INTO users (firstName, lastName)  VALUES ($1, $2) RETURNING *',
         [createUserDto.firstName, createUserDto.lastName],
       );
@@ -49,7 +55,7 @@ export class UsersService {
     try {
       const { firstName, lastName } = updateUserDto;
 
-      const users = await this.pg.query(
+      const users = await this.dbConnection.query(
         'UPDATE users SET firstName=$1, lastName=$2 WHERE id=$3 RETURNING *',
         [firstName, lastName, id],
       );
@@ -64,7 +70,7 @@ export class UsersService {
       throw new BadRequestException();
     }
 
-    const users = await this.pg.query(
+    const users = await this.dbConnection.query(
       'DELETE FROM users WHERE id=$1 RETURNING *',
       [id],
     );

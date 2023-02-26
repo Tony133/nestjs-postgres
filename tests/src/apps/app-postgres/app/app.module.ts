@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PostgresModule } from '../../../lib';
+import { PostgresModule } from '../../../../../lib';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -13,11 +13,11 @@ import { UsersModule } from './users/users.module';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-        host: config.get<string>('POSTGRES_HOST'),
-        database: config.get<string>('POSTGRES_DB'),
-        password: config.get<string>('POSTGRES_PASSWORD'),
-        user: config.get<string>('POSTGRES_USER'),
-        port: config.get<number>('POSTGRES_PORT'),
+        host: config.get<string>('POSTGRES_HOST', 'localhost'),
+        database: config.get<string>('POSTGRES_DB', 'test'),
+        password: config.get<string>('POSTGRES_PASSWORD', 'pass123'),
+        user: config.get<string>('POSTGRES_USER', 'postgres'),
+        port: config.get<number>('POSTGRES_PORT', 5433),
       }),
     }),
     UsersModule,
