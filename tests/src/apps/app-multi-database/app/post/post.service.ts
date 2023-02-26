@@ -9,6 +9,7 @@ import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { NotFoundException } from '@nestjs/common';
 import { InjectConnection } from '../../../../../../lib';
+import { Post } from './interfaces/post.interface';
 
 @Injectable()
 export class PostService {
@@ -17,12 +18,12 @@ export class PostService {
     private dbConnection: Client,
   ) {}
 
-  public async findAll(): Promise<any> {
+  public async findAll(): Promise<Post[]> {
     const users = await this.dbConnection.query('SELECT * FROM posts');
     return users.rows;
   }
 
-  public async findOne(id: string): Promise<any> {
+  public async findOne(id: string): Promise<Post[]> {
     if (!id) {
       throw new BadRequestException();
     }
@@ -39,7 +40,7 @@ export class PostService {
     return result.rows;
   }
 
-  public async create(createPostDto: CreatePostDto): Promise<any> {
+  public async create(createPostDto: CreatePostDto): Promise<Post[]> {
     try {
       const post = await this.dbConnection.query(
         'INSERT INTO posts (title, description)  VALUES ($1, $2) RETURNING *',
@@ -51,7 +52,10 @@ export class PostService {
     }
   }
 
-  public async update(id: number, updateUserDto: UpdatePostDto) {
+  public async update(
+    id: number,
+    updateUserDto: UpdatePostDto,
+  ): Promise<Post[]> {
     try {
       const { title, description } = updateUserDto;
 

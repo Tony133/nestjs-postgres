@@ -9,6 +9,7 @@ import { Client } from 'pg';
 import { InjectConnection } from '../../../../../../lib';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersService {
@@ -17,12 +18,12 @@ export class UsersService {
     private dbConnection: Client,
   ) {}
 
-  public async findAll(): Promise<any> {
+  public async findAll(): Promise<User[]> {
     const users = await this.dbConnection.query('SELECT * FROM users');
     return users.rows;
   }
 
-  public async findOne(id: string): Promise<any> {
+  public async findOne(id: string): Promise<User[]> {
     if (!id) {
       throw new BadRequestException();
     }
@@ -39,7 +40,7 @@ export class UsersService {
     return result.rows;
   }
 
-  public async create(createUserDto: CreateUserDto): Promise<any> {
+  public async create(createUserDto: CreateUserDto): Promise<User[]> {
     try {
       const user = await this.dbConnection.query(
         'INSERT INTO users (firstName, lastName)  VALUES ($1, $2) RETURNING *',
@@ -51,7 +52,10 @@ export class UsersService {
     }
   }
 
-  public async update(id: number, updateUserDto: UpdateUserDto) {
+  public async update(
+    id: number,
+    updateUserDto: UpdateUserDto,
+  ): Promise<User[]> {
     try {
       const { firstName, lastName } = updateUserDto;
 
