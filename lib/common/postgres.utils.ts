@@ -1,7 +1,7 @@
 import { PostgresModuleOptions } from '../interfaces';
 import { DEFAULT_CONNECTION_NAME } from '../postgres.constants';
 import { Observable } from 'rxjs';
-import { delay, retry, scan } from 'rxjs/operators';
+import { delay, retryWhen, scan } from 'rxjs/operators';
 import { randomUUID } from 'node:crypto';
 import { Logger } from '@nestjs/common';
 import { CircularDependencyException } from '../exceptions/circular-dependency.exception';
@@ -61,7 +61,7 @@ export function handleRetry(
 ): <T>(source: Observable<T>) => Observable<T> {
   return <T>(source: Observable<T>) =>
     source.pipe(
-      retry({ delay: (e) =>
+      retryWhen((e) =>
         e.pipe(
           scan((errorCount, error: Error) => {
             logger.error(
@@ -77,7 +77,7 @@ export function handleRetry(
           }, 0),
           delay(retryDelay),
         ),
-      }),
+      ),
     );
 }
 
