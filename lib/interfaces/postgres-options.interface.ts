@@ -8,7 +8,7 @@ export interface PostgresModuleOptions {
   password?: string;
   user?: string;
   port?: number;
-  ssl?: boolean;
+  ssl?: boolean | PostgresSSLOptions;
   connectionString?: string;
   retryAttempts?: number;
   retryDelay?: number;
@@ -19,4 +19,11 @@ export interface PostgresModuleOptions {
   applicationName?: string;
   connectionTimeoutMillis?: number;
   idleInTransactionSessionTimeout?: number;
+}
+
+interface PostgresSSLOptions {
+  rejectUnauthorized?: boolean;
+  ca?: string;
+  key?: string;
+  cert?: string;
 }
