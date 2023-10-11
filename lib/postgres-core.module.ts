@@ -27,7 +27,7 @@ export class PostgresCoreModule implements OnApplicationShutdown {
     private readonly moduleRef: ModuleRef,
   ) {}
 
-  static forRoot(
+  public static forRoot(
     options: PostgresModuleOptions,
     connection?: string,
   ): DynamicModule {
