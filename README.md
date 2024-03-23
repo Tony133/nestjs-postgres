@@ -109,7 +109,7 @@ import { InjectClient } from 'nest-postgres';
 export class UsersService {
   constructor(@InjectClient() private readonly pg: Client) {}
 
-  public async findAll(): Promise<any> {
+  public async findAll(): Promise<User[]> {
     const users = await this.pg.query('SELECT * FROM users');
     return users.rows;
   }
@@ -127,7 +127,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getAllUsers() {
+  async getAllUsers(): Promise<User[]> {
     return await this.usersService.findAll();
   }
 }
@@ -171,6 +171,7 @@ PostService:
 import { Client } from 'pg';
 import { InjectConnection } from 'nest-postgres';
 import { CreatePostDto } from './dto/create-post.dto';
+import { Post } from './interfaces/post.interface';
 
 @Injectable()
 export class PostService {
@@ -179,12 +180,12 @@ export class PostService {
     private dbConnection: Client,
   ) {}
 
-  public async findAll(): Promise<any> {
+  public async findAll(): Promise<User[]> {
     const users = await this.dbConnection.query('SELECT * FROM posts');
     return users.rows;
   }
 
-  public async create(createPostDto: CreatePostDto): Promise<any> {
+  public async create(createPostDto: CreatePostDto): Promise<User> {
     try {
       const user = await this.dbConnection.query(
         'INSERT INTO posts (title, description)  VALUES ($1, $2) RETURNING *',
@@ -204,6 +205,7 @@ UsersService:
 import { Client } from 'pg';
 import { InjectConnection } from 'nest-postgres';
 import { CreateUserDto } from './dto/create-user.dto';
+import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersService {
@@ -212,12 +214,12 @@ export class UsersService {
     private dbConnection: Client,
   ) {}
 
-  public async findAll(): Promise<any> {
+  public async findAll(): Promise<User[]> {
     const users = await this.dbConnection.query('SELECT * FROM users');
     return users.rows;
   }
 
-  public async create(createUserDto: CreateUserDto): Promise<any> {
+  public async create(createUserDto: CreateUserDto): Promise<User> {
     try {
       const user = await this.dbConnection.query(
         'INSERT INTO users (firstName, lastName)  VALUES ($1, $2) RETURNING *',
