@@ -180,12 +180,12 @@ export class PostService {
     private dbConnection: Client,
   ) {}
 
-  public async findAll(): Promise<User[]> {
+  public async findAll(): Promise<Post[]> {
     const users = await this.dbConnection.query('SELECT * FROM posts');
     return users.rows;
   }
 
-  public async create(createPostDto: CreatePostDto): Promise<User> {
+  public async create(createPostDto: CreatePostDto): Promise<Post[]> {
     try {
       const user = await this.dbConnection.query(
         'INSERT INTO posts (title, description)  VALUES ($1, $2) RETURNING *',
@@ -219,7 +219,7 @@ export class UsersService {
     return users.rows;
   }
 
-  public async create(createUserDto: CreateUserDto): Promise<User> {
+  public async create(createUserDto: CreateUserDto): Promise<User[]> {
     try {
       const user = await this.dbConnection.query(
         'INSERT INTO users (firstName, lastName)  VALUES ($1, $2) RETURNING *',
