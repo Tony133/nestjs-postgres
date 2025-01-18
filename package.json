@@ -32,7 +32,6 @@
     "@nestjs/core": "11.0.1",
     "@nestjs/platform-fastify": "11.0.1",
     "@nestjs/testing": "11.0.1",
-    "@types/eslint__js": "8.42.3",
     "@types/jest": "29.5.14",
     "@types/node": "22.10.7",
     "@types/pg": "8.11.10",
