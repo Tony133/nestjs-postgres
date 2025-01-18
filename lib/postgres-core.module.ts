@@ -16,7 +16,7 @@ import { getConnectionToken, handleRetry } from './common/postgres.utils';
 import { POSTGRES_MODULE_OPTIONS } from './postgres.constants';
 import { ModuleRef } from '@nestjs/core';
 import { defer, lastValueFrom } from 'rxjs';
-import { Client, Pool } from 'pg';
+import { Pool } from 'pg';
 
 @Global()
 @Module({})
