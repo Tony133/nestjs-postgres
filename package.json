@@ -1,6 +1,6 @@
 {
   "name": "nest-postgres",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "PostgreSQL module for Nest framework (node.js) 😻",
   "author": "Tony133",
   "license": "MIT",
